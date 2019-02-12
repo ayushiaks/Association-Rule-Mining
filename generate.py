@@ -8,23 +8,33 @@ import numpy as np
 def k_itemset(k,_itemset):
 	newk= []
 	length = len(k)
-	for i in range(length-1):
-		for j  in range(i+1,length):
-			flag = True
-			tmp = []
-			for x in range(_itemset-1):
-				if k[i][x] != k[j][x]:
-					flag = False
-					break
-				else:
+	x =0
+	if(_itemset>=2):
+		for i in range(length-1):
+			for j  in range(i+1,length):
+				flag = True
+				tmp = []
+				for x in range(_itemset-1):
+					if k[i][x] != k[j][x]:
+						flag = False
+						break
+					else:
+						tmp.append(k[i][x])
+				x = x+1
+				if 	flag:	
 					tmp.append(k[i][x])
-			if 	flag:	
-				tmp.append(k[i][x+1])
-				tmp.append(k[j][x+1])
-			if 	flag and (len(tmp) == _itemset+1):
+					tmp.append(k[j][x])
+				if 	flag and (len(tmp) == _itemset+1):
+					newk.append(tmp)
+	else:
+		for i in range(length-1):
+			for j in range(i+1,length):
+				tmp=[]
+				tmp.append(k[i][0])
+				tmp.append(k[j][0])
 				newk.append(tmp)
 	return newk
 
-k = [[2,3,4,6],[2,3,5,9],[2,3,9,10]]
-k = k_itemset(k,4)
-print(k)
+# k = [[2],[3],[4]]
+# k = k_itemset(k,1)
+# print(k)
