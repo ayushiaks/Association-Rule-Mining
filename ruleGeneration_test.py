@@ -8,6 +8,9 @@ import copy
 pkl_file = open("superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
 item = []
+pkl_file = open("hash_table.pkl","rb")
+hash_table = pickle.load(pkl_file)
+print(hash_table[6])
 
 def generateAllRules(x,y,used,item):
 	x = list(x)
@@ -25,10 +28,11 @@ def generateAllRules(x,y,used,item):
 			try:
 				used[tmp] == 1
 			except KeyError:
-				if confidence(item,y_made) > minconfidence:
+				con = confidence(item,x_made)
+				if con > minconfidence:
 					x_made = tuple(x_made)
 					y_made = tuple(y_made)
-					finalRules[x_made] = y_made
+					finalRules[x_made] = (y_made,con)
 					generateAllRules(x_made,y_made,used,item)
 			inum = inum + 1
 			return
@@ -36,17 +40,13 @@ def generateAllRules(x,y,used,item):
 def confidence(supab,supb):
 	supab.sort()
 	supb.sort()
-	global max
-	max = 0
 	supab = tuple(supab)
 	supb = tuple(supb)
 	result = superdict[supab][0]/superdict[supb][0]
-	if result > max:
-		max = result
-		print(supab,supb,result)
+		# print(supab,supb,result)
 	return result
 
-minconfidence = 0.03
+minconfidence = 0.2
 finalRules = {}
 
 
@@ -59,16 +59,16 @@ def relevantRule(item):
 		y.insert(-1,item[inum])
 		del x[inum]
 		inum = inum+1
-		if confidence(item,y) > minconfidence:
+		con = confidence(item,x)
+		if con > minconfidence:
 			x = tuple(x)
 			y = tuple(y)
 			used[y] = 1
-			finalRules[x] = y
+			finalRules[x] = (y,con)
 			generateAllRules(x,y,used,item)
 
 
 def callme():
-
 	# relevantRule([4,6,8,20,27])
 	for i in superdict:
 		if len(i) > 1:
@@ -77,5 +77,18 @@ def callme():
 
 
 callme()
-print(finalRules)
-print(max)
+# print(finalRules)
+for i in finalRules:
+	l = list(i)
+	x = []
+	for j in l:
+		x.append(hash_table[j])
+	l = list(finalRules[i])
+	l = l[0]
+	y = []
+	for j in l:
+		y.append(hash_table[j])
+	if len(y) > 1:
+		print(x,"->",y)
+
+# print(max)

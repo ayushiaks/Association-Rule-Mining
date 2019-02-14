@@ -66,6 +66,7 @@ for i in range(1,max_length):
 
 pkl_file = open("superdict.pkl","wb")
 pickle.dump(superdict,pkl_file)
-
-
+pkl_file = open("hash_table.pkl", "wb")
+pickle.dump(hash_table,pkl_file)
+pkl_file.close()
   

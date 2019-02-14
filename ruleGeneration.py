@@ -25,7 +25,7 @@ def generateAllRules(lvl_rules):
 				y.insert(-1,x_maker[inum])
 				# print(y)
 				del x[inum]
-				inum = inum +1
+				inum = inum + 1
 				if confidence(x,y)>minconfidence:
 					lvh_rules.append(x)
 					lvh_rules.append(y)
@@ -51,11 +51,10 @@ def confidence(supab,supb):
 	result = superdict[supab][0]/superdict[supb][0]
 	return result
 
-minconfidence = 0.01
+minconfidence = 0.03
 finalRules = {}
-
 lvl_rules = []
-	#find x and y refering to silde l9-s9
+
 def relevantRule(item):
 	inum = 0
 	for i in item:
@@ -81,8 +80,3 @@ def callme():
 
 
 callme()
-# print(superdict)
-# for i in finalRules:
-
-	# if len(finalRules[i]) > 1:
-	# 	print(i,"->",finalRules[i])
