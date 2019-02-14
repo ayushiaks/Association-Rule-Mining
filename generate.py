@@ -34,7 +34,3 @@ def k_itemset(k,_itemset):
 				tmp.append(k[j][0])
 				newk.append(tmp)
 	return newk
-
-# k = [[2],[3],[4]]
-# k = k_itemset(k,1)
-# print(k)

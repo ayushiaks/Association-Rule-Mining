@@ -46,7 +46,7 @@ def confidence(supab,supb):
 		# print(supab,supb,result)
 	return result
 
-minconfidence = 0.2
+minconfidence = 0.01
 finalRules = {}
 
 

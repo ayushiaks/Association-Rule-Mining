@@ -37,21 +37,15 @@ for i in hash_table:
 	candidates.append(l)
 
 for i in range(1,max_length):
-	print(candidates)
 	true_candidates=[]
 	candidates=k_itemset(candidates,i)
-	# print(candidates)
 	for j in candidates:
 		flag = 1
-		print(j)
-		# s=superdict[tuple(j)]	
-		# if s[1]!=-1:
 		l = powerset(j, len(j)-1)
 		for p in l:
 			if  tuple(p) in superdict:
 				continue
 			else:
-				print("here")
 				flag=0
 				break
 		if flag==1:
