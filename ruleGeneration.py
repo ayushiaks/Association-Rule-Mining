@@ -20,17 +20,21 @@ def generateAllRules(lvl_rules):
 			inum = 0
 			for aman in x_maker: 
 				x = x_maker
+				print(x)
 				y = y_maker
 				y.insert(-1,x_maker[inum])
+				# print(y)
 				del x[inum]
 				inum = inum +1
 				if confidence(x,y)>minconfidence:
 					lvh_rules.append(x)
 					lvh_rules.append(y)
+					# print(y)
 					flag = True
 					x = tuple(x)
 					y = tuple(y)
 					finalRules[x] = y
+					# print(x,"->",finalRules[x])
 		i = i-2
 
 		if flag:
