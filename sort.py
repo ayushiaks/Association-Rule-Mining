@@ -65,15 +65,22 @@ for i in range(size[0]):
 
 # print(reverse_hash_table)
 
+print(transactions[3])
+
 def sortSecond(val): 
     return len(items[val])
 
+
+print(items_list)
 items_list.sort(key = sortSecond,reverse = True)
 # print(len(items['napkins']),len(items['whole milk']))
+
 
 sorted_list=[]
 for i in items_list:
 	sorted_list.append(hash_table[i])
+
+print(sorted_list)
 
 true_transactions={}
 
@@ -85,6 +92,7 @@ for i in transactions:
 			else:
 				true_transactions[i]=[j]
 
+print(true_transactions[3])
 output=open("transactions.pkl",'wb')
 pickle.dump(true_transactions,output)
 output.close()

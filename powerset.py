@@ -19,9 +19,7 @@ def powerset(s, k):
 
 def lsupport(minsup,l):
 	if len(l)>=minsup:
-		if len(l)<1500:
-			return True
-		return False
+		return True
 	return False
 
 items_list=[]

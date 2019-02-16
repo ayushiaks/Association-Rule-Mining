@@ -64,5 +64,5 @@ output=open("items.pkl",'wb')
 pickle.dump(items,output)
 output.close()
 
-print(items['citrus fruit'])
+print(items)
 
