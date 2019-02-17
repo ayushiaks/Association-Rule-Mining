@@ -15,15 +15,22 @@ reverse_hash_table=pickle.load(pkl_file)
 
 class Tree(object):
     "Generic tree node."
-    def __init__(self, name=0, children=None):
+    def __init__(self, name=0,parent=None,children=None):
         self.name = name
         self.children = {}
+        if 'p' not in self.children:
+            self.children['p']=parent
+        # self.parent = parent
+        # self
     def repr(self):
         return self.name
     def add_child(self, node,parent):
-        self.children[node]=[1,Tree(node),parent]
+        self.children[node]=[1,Tree(node,parent),parent]
     def child(self):
         return self.children
+    # def parent(self):
+    #     print(self.parent)
+    #     return self.parent
     def update(self, node):
         self.children[node][0]=self.children[node][0]+1
 
@@ -34,13 +41,13 @@ root = Tree(0,0)
 # temp.add_child(3)
 
 pointers = {}
-
 # transactions = {}
 # transactions[1] = [1, 2]
 # transactions[2] = [2, 3]
 
 count = 0
 store = []
+
 
 for i in transactions:
     temp = root
@@ -64,5 +71,5 @@ for i in transactions:
             l = []
             l.append(temp)
             pointers[val] = l
-print(root)
-print(root.child()[1][2])
+# print(root)
+# print(root.child()['p'])

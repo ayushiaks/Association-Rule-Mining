@@ -104,3 +104,7 @@ output.close()
 output=open("reverse_hash.pkl",'wb')
 pickle.dump(reverse_hash_table,output)
 output.close()
+
+output=open("sorted_list.pkl",'wb')
+pickle.dump(sorted_list,output)
+output.close()
