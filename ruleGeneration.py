@@ -1,3 +1,9 @@
+#useless file
+#please use ruleGeneration_test.py instead
+
+
+
+
 #call functions of the file and this file only for ruleGeneration
 #the use of a hash table superdict which was created in gen_powerset.py which has the support of all frequent candidates has been made to find support in O(1) time.
 #we also use the fact that all subsets of a frequent candidate shall be frequent to avoid hitting the data set 
@@ -20,7 +26,7 @@ def generateAllRules(lvl_rules):
 			inum = 0
 			for aman in x_maker: 
 				x = x_maker
-				print(x)
+				# print(x)
 				y = y_maker
 				y.insert(-1,x_maker[inum])
 				# print(y)

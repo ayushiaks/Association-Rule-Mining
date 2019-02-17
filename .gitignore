@@ -1,3 +1,5 @@
 #Dataset:
 groceries.csv
 items.pkl
+#cache
+__pycache__/

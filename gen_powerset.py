@@ -35,6 +35,7 @@ candidates=	[]
 for i in hash_table:
 	l=[i]
 	candidates.append(l)
+print(candidates)
 
 for i in range(1,max_length):
 	true_candidates=[]
