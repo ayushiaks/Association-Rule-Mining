@@ -65,36 +65,28 @@ for i in range(size[0]):
 
 # print(reverse_hash_table)
 
-print(transactions[3])
+# def sortSecond(val): 
+#     return len(items[val])
 
-def sortSecond(val): 
-    return len(items[val])
+# items_list.sort(key = sortSecond,reverse = True)
+# # print(len(items['napkins']),len(items['whole milk']))
 
+# sorted_list=[]
+# for i in items_list:
+# 	sorted_list.append(hash_table[i])
 
-print(items_list)
-items_list.sort(key = sortSecond,reverse = True)
-# print(len(items['napkins']),len(items['whole milk']))
+# true_transactions={}
 
+# for i in transactions:
+# 	for j in sorted_list:
+# 		if j in transactions[i]:
+# 			if i in true_transactions:
+# 				true_transactions[i].append(j)
+# 			else:
+# 				true_transactions[i]=[j]
 
-sorted_list=[]
-for i in items_list:
-	sorted_list.append(hash_table[i])
-
-print(sorted_list)
-
-true_transactions={}
-
-for i in transactions:
-	for j in sorted_list:
-		if j in transactions[i]:
-			if i in true_transactions:
-				true_transactions[i].append(j)
-			else:
-				true_transactions[i]=[j]
-
-print(true_transactions[3])
 output=open("transactions.pkl",'wb')
-pickle.dump(true_transactions,output)
+pickle.dump(transactions,output)
 output.close()
 
 output=open("hash.pkl",'wb')
@@ -103,8 +95,4 @@ output.close()
 
 output=open("reverse_hash.pkl",'wb')
 pickle.dump(reverse_hash_table,output)
-output.close()
-
-output=open("sorted_list.pkl",'wb')
-pickle.dump(sorted_list,output)
 output.close()
