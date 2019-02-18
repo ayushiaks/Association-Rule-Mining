@@ -7,48 +7,40 @@ superdict = pickle.load(pkl_file)
 
 tmp = superdict.copy()
 
-
-def checksub(t1,t2):
-    c = 0
-    for i in t1:
-        for j in t2:
-            if i == j:
-                c = c+1
-                # print(i,j)
-                if len(t1) == c:
-                    print("y")
-                    return True
+#finding i where a itemset of a particular size ends
+index = {}
+_list = []
+k = 1
+l_list = []
+for i in tmp:
+    if tmp[i][1] == k:
+        index[k] = i
+        l_list.append(i)
     else:
-        print("fy",c)
-        return False
+        k += 1
+        index[k] = i
+        _list.append(l_list)
+        l_list = []
 
-# checksub((1,2),(1,2,3))
+for k in range(0,len(_list)-1):
+    for i in _list[k]:
+        for j in _list[k+1]:
+            if tmp[tuple(i)][0] == tmp[tuple(j)][0]:
+                # print(i,j)
+                a = [word for word in i if word not in j]
+                # print(a)
+                if len(a) == 0:
+                    print("asd")
+                    tmp[tuple(i)][1] = 0
+                    # continue
+                    print(i,j,tmp[tuple(i)][0],tmp[tuple(j)][0])
+closed = []
+for i in tmp:
+    if tmp[i][1] != 0:
+        closed.append(i)
 
-def nameme():
-    # listi = {}
-    # listj = {}
-    for i in tmp:
-        for j in tmp:
-            if len(j)>len(i):
-                if len(j) < 3:
-                    print(i,j)
-                    # if tmp[i][0] == tmp[j][0]:
-                    #     print(i,j)
-                    #     if checksub(i,j) == True:
-                    #         print(i,j,len(j),len(i))
+pkl_file = open("closed.pkl","wb")
+pickle.dump(closed,pkl_file)
+pkl_file.close()
+print(len(closed),"closed")
 
-    #     listi[i] = 0
-    #     listj[i] = 0
-    # for i in tmp:
-    #     itmp = listi.copy()
-    #     for k in i:
-    #         itmp[k] = 1
-    #     # print(listi)
-    #     for j in tmp:
-    #         jtmp = listj.copy()
-    #         for kj in j:
-    #             jtmp[kj] = 1
-    #         if len(j) > len(i):
-    #             continue
-                
-nameme()
