@@ -6,19 +6,11 @@ transactions=pickle.load(pkl_file)
 pkl_file=open("reverse_hash.pkl","rb")
 reverse_hash=pickle.load(pkl_file)
 
-
-
-# transactions={1:['r', 'z', 'h', 'j', 'p'],
-#             2:['z', 'y', 'x', 'w', 'v', 'u', 't', 's'],
-#             3:['z'],
-#             4:['r', 'x', 'n', 'o', 's'],
-#             5:['y', 'r', 'x', 'z', 'q', 't', 'p'],
-#             6:['y', 'z', 'x', 'e', 'q', 's', 't', 'm']}
-
-
-
 class Tree(object):
-    "Generic tree node."
+    """Generic tree node.
+        Name:The value of node
+        Children:Points to dictionary for which value of key is its (Frequency,Address of its node,Address of the parent)    
+    """
     def __init__(self, name=0,parent=None,children=None):
         self.name = name
         self.children = {}
@@ -127,19 +119,21 @@ def mine_tree(root,pointers,items_list, min_support, prefix_, freq_item_list):
         if head != None:
             mine_tree(cond_tree, head,i_list,min_support, new_freq_set, freq_item_list)
 
+def fp_tree(min_sup):
+    root,pointers,items_list=make_tree(transactions,min_sup)
 
-root,pointers,items_list=make_tree(transactions,100)
-
-freq_items = []
-mine_tree(root, pointers,items_list,100, set([]), freq_items)
+    freq_items = []
+    mine_tree(root, pointers,items_list,min_sup, set([]), freq_items)
 
 
-freq_actual=[]
-for i in freq_items:
-    l=[]
-    for j in i:
-        l.append(reverse_hash[j])
-    freq_actual.append(l)
-
+    freq_actual=[]
+    for i in freq_items:
+        l=[]
+        for j in i:
+            l.append(reverse_hash[j])
+        freq_actual.append(l)
+    return freq_actual
+    
+freq_actual=fp_tree(int(input("Enter the minimum support you want for FP_Tree:")))
 for i in freq_actual:
-    print(i)
+        print(i)    
