@@ -2,7 +2,7 @@ import pickle
 import copy
 from itertools import combinations
 
-pkl_file = open("superdict.pkl","rb")
+pkl_file = open("./pkl_files/superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
 
 tmp = superdict.copy()
@@ -39,7 +39,7 @@ for i in tmp:
     if tmp[i][1] != 0:
         closed.append(i)
 
-pkl_file = open("closed.pkl","wb")
+pkl_file = open("./pkl_files/closed.pkl","wb")
 pickle.dump(closed,pkl_file)
 pkl_file.close()
 print(len(closed),"closed")
