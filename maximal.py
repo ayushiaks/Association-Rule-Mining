@@ -4,7 +4,7 @@ import pickle
 import copy
 from itertools import combinations
 
-pkl_file = open("superdict.pkl","rb")
+pkl_file = open("./pkl_files/superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
 
 tmp = superdict.copy()
@@ -42,6 +42,6 @@ def callme():
     return _list
 
 ans = callme()
-pkl_file = open("maximal.pkl","wb")
+pkl_file = open("./pkl_files/maximal.pkl","wb")
 pickle.dump(ans,pkl_file)
 pkl_file.close()
