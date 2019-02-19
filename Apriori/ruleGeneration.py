@@ -10,7 +10,6 @@ superdict = pickle.load(pkl_file)
 item = []
 pkl_file = open("../pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
-print(hash_table[6])
 
 def generateAllRules(x,y,used,item):
 	x = list(x)
@@ -29,7 +28,7 @@ def generateAllRules(x,y,used,item):
 				used[tmp] == 1
 			except KeyError:
 				con = confidence(item,x_made)
-				if con > minconfidence:
+				if con >= minconfidence:
 					x_made = tuple(x_made)
 					y_made = tuple(y_made)
 					finalRules[x_made] = (y_made,con)
@@ -46,7 +45,7 @@ def confidence(supab,supb):
 		# print(supab,supb,result)
 	return result
 
-minconfidence = 0.01
+minconfidence = 0.1
 finalRules = {}
 
 
@@ -77,7 +76,7 @@ def callme():
 
 
 callme()
-# print(finalRules)
+print(len(finalRules))
 for i in finalRules:
 	l = list(i)
 	x = []
@@ -88,7 +87,5 @@ for i in finalRules:
 	y = []
 	for j in l:
 		y.append(hash_table[j])
-	if len(y) > 1:
+	if len(y) >= 1:
 		print(x,"->",y)
-
-# print(max)

@@ -1,6 +1,6 @@
 import pickle
 import numpy as np
-from powerset import *
+from powerset import powerset,items_list
 from merge_itemsets import k_itemset 
 
 pkl_file=open("../pkl_files/items.pkl","rb")
@@ -52,11 +52,13 @@ for i in range(1,max_length):
 			sup=[]
 			for k in j:
 				sup.append(items[hash_table[k]])
-			if csupport(sup)>=200:
+			if csupport(sup)>60:
 				superdict[tuple(j)]=[csupport(sup),len(j)]
 				true_candidates.append(j)
 						
 	candidates=true_candidates		
+
+
 
 pkl_file = open("../pkl_files/superdict.pkl","wb")
 pickle.dump(superdict,pkl_file)

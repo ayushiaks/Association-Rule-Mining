@@ -153,3 +153,5 @@ def fp_tree(min_sup):
 freq_actual=fp_tree(int(input("Enter the minimum support you want for FP_Tree:")))
 for i in freq_actual:
         print(i)    
+
+print(len(freq_actual))

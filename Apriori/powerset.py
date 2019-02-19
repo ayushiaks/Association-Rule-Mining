@@ -18,7 +18,7 @@ def powerset(s, k):
 	return powerset
 
 def lsupport(minsup,l):
-	if len(l)>=minsup:
+	if len(l)>minsup:
 		return True
 	return False
 
@@ -26,7 +26,5 @@ items_list=[]
 
 #DM KI ASS: Dict se delete krnaa h
 for item in items:
-	if lsupport(200, items[item]):
+	if lsupport(60, items[item]):
 		items_list.append(item)
-
-# print(items_list)
