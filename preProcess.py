@@ -60,7 +60,7 @@ for i in range(size[0]):
 			l.append(i)
 			items[df[i][j]]=l
 
-output=open("items.pkl",'wb')
+output=open("./pkl_files/items.pkl",'wb')
 pickle.dump(items,output)
 output.close()
 
