@@ -1,13 +1,17 @@
+"""
+Written by: Aman,Ayushi
+Written on: Feb 17,2019
+why does it exists 
+"""
 import pickle
 import pandas
-import numpy as np
 
 data_file = "../groceries.csv"
 
 pkl_file=open("../pkl_files/items.pkl","rb")
 
 items=pickle.load(pkl_file)
-
+pkl_file.close()
 data_file_delimiter = ','
 
 # The max column count a line in the file could have
@@ -53,7 +57,6 @@ for i in range(size[0]):
 	for j in range(size[1]):
 		if df[i][j]!='':
 			if df[i][j] not in hash_table:
-				# print(cont)
 				hash_table[df[i][j]] = count
 				reverse_hash_table[count]=df[i][j]
 				count = count+1

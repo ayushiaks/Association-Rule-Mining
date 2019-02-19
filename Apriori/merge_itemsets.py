@@ -1,5 +1,9 @@
-import numpy as np
-
+"""
+Written by: Garvit
+Written on: Feb 12,2019
+This code takes in a list(k) and value of k in k-itemset(_itemset) and returns a list of all possible k-itemsets
+It prunes the supersets if subsets are found to be non-frequent except in the case mentioned below, that is taken care of in gen_freqitemset.py
+"""
 
 #abcd abde are there then no need for generating abcde as abce is did not qualify 
 #in this case only one false case shall qualify 

@@ -1,13 +1,23 @@
+"""
+Written by: Garvit
+Written on: Feb 18,2019
+This code takes input all frequent itemsets and finds closed itemsets 
+"""
+
 import pickle
 import copy
 from itertools import combinations
 
 pkl_file = open("./pkl_files/superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
+pkl_file.close()
+
+pkl_file = open("./pkl_files/hash_table.pkl","rb")
+hash_table = pickle.load(pkl_file)
+pkl_file.close()
 
 tmp = superdict.copy()
 
-#finding i where a itemset of a particular size ends
 index = {}
 _list = []
 k = 1
@@ -34,10 +44,18 @@ for k in range(0,len(_list)-1):
                     tmp[tuple(i)][1] = 0
                     # continue
                     print(i,j,tmp[tuple(i)][0],tmp[tuple(j)][0])
-closed = []
+_closed = []
 for i in tmp:
     if tmp[i][1] != 0:
-        closed.append(i)
+        _closed.append(i)
+
+closed = []
+for i in _closed:
+    tmp = []
+    for j in i:
+        tmp.append(hash_table[j])
+    closed.append(tmp)
+print(closed)
 
 pkl_file = open("./pkl_files/closed.pkl","wb")
 pickle.dump(closed,pkl_file)

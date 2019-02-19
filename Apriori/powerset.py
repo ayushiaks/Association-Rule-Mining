@@ -1,11 +1,15 @@
+"""
+Written by: Aman,Ayushi
+Written on: Feb 17,2019
+why does it exists 
+"""
+
 import pickle
-import numpy as np
 
 pkl_file=open("../pkl_files/items.pkl","rb")
 
 items=pickle.load(pkl_file)
 
-# print(items)
 
 def powerset(s, k):
 	x = len(s)
@@ -24,7 +28,6 @@ def lsupport(minsup,l):
 
 items_list=[]
 
-#DM KI ASS: Dict se delete krnaa h
 for item in items:
 	if lsupport(60, items[item]):
 		items_list.append(item)

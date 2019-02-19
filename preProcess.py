@@ -1,8 +1,13 @@
+"""
+Written by: Ayushi,Aman,Garvit
+Written on: Feb 11,2019
+This code parses the input data file to make a dictionary which is used by rest of the programs
+"""
 import pandas
 import pickle
 import math
 import numpy as np
-# data=pd.read_csv('groceries.csv', error_bad_lines=False)
+
 
 # Input
 data_file = "groceries.csv"
@@ -15,7 +20,6 @@ largest_column_count = 0
 
 # Loop the data lines
 with open(data_file, 'r') as temp_f:
-    # Read the lines
     lines = temp_f.readlines()
 
     for l in lines:
@@ -25,7 +29,6 @@ with open(data_file, 'r') as temp_f:
         # Set the new most column count
         largest_column_count = column_count if largest_column_count < column_count else largest_column_count
 
-# Close file
 temp_f.close()
 
 # Generate column names (will be 0, 1, 2, ..., largest_column_count - 1)
@@ -33,22 +36,22 @@ column_names = [i for i in range(0, largest_column_count)]
 
 # Read csv
 df = pandas.read_csv(data_file, header=None, delimiter=data_file_delimiter, names=column_names)
-# print(df[0][1])
 
+#a dictionary to store itemid as key and itemcount as the value
 items={}
 
 df = df.fillna('')
 
 df=df.values
 
-print(df[0][0])
 
 size=df.shape
 
-print(size)
-
-
-
+"""
+this loop parses the dataset(groceries.csv) and 
+add a item if a new item arrives for the first time and
+stores the transaction id for the relevant item
+"""
 for i in range(size[0]):
 	for j in range(size[1]):
 		if (df[i][j] not in items) and (df[i][j]!=''):
@@ -60,7 +63,7 @@ for i in range(size[0]):
 			l.append(i)
 			items[df[i][j]]=l
 
-output=open("./pkl_files/items.pkl",'wb')
+output=open("pkl_files/items.pkl",'wb')
 pickle.dump(items,output)
 output.close()
 

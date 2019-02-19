@@ -1,3 +1,8 @@
+"""
+Written by: Aman,Ayushi
+Written on: Feb 16,2019
+why does it exists 
+"""
 import pickle
 
 pkl_file=open("../pkl_files/transactions.pkl","rb")
