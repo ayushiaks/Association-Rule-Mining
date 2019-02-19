@@ -9,7 +9,11 @@ reverse_hash=pickle.load(pkl_file)
 class Tree(object):
     """Generic tree node.
         Name:The value of node
-        Children:Points to dictionary for which value of key is its (Frequency,Address of its node,Address of the parent)    
+        Children:Points to dictionary for which value of key is its (Frequency,Address of its node,Address of the parent)
+        Repr:Function which returns name of the node
+        Add_Child:Function to add child of a node
+        Child: Function which returns a dictionary that contains the Children of th node
+        Update: Function to increase the count by 1 when it is encountered again    
     """
     def __init__(self, name=0,parent=None,children=None):
         self.name = name
@@ -27,20 +31,26 @@ class Tree(object):
 
 
 def make_tree(transactions,min_sup):
+    """This function takes a dictionary(Transaction Id: [The number of items purchased]) and minimum support as input.
+       It returns FP Tree for this transaction, Header Table, Items(In sorted order which are in the tree)   
+    """
     items={}
 
+    # Makes a dictionary of all the items in transaction with its count i.e. Key is item and Support count is its value
     for i in transactions:
         for j in transactions[i]:
             if j not in items:
                 items[j]=1
             else:
                 items[j]=items[j]+1
-
+    
+    #Deleting the less frequent items
     items_copy=items.copy()
     for i in items_copy:
         if items[i]<min_sup:
             del(items[i])
-
+    
+    #Sorting Items according to support count
     items_list=[]
     for i in items:
         items_list.append(i)
@@ -49,9 +59,9 @@ def make_tree(transactions,min_sup):
         return items[val]
 
     items_list.sort(key = sortSecond,reverse = True)
-    # print(len(items['napkins']),len(items['whole milk']))
+    
+    #Ordering the transactions according to sorted order which is required for FP Growth Algorithm 
     true_transactions={}
-
     for i in transactions:
         for j in items_list:
             if j in transactions[i]:
@@ -60,9 +70,9 @@ def make_tree(transactions,min_sup):
                 else:
                     true_transactions[i]=[j]
 
+    #Construction of FP tree
     root = Tree(0,0)
     pointers = {}
-
     for i in true_transactions:
         temp = root
         for j in true_transactions[i]:
@@ -86,6 +96,9 @@ def make_tree(transactions,min_sup):
     return root,pointers,items_list
 
 def prefix(pointers,val):
+    """ Returns every prefix path of the node which is passed to it. Now this prefix path will be used as transaction to make
+        conditional FP tree on the passed node   
+    """
     prefix_path={}
     count=1
     for j in pointers[val]: 
@@ -107,6 +120,9 @@ def prefix(pointers,val):
 
 
 def mine_tree(root,pointers,items_list, min_support, prefix_, freq_item_list):
+    """ Recursive function to mine tree according Condition Patteren Bases
+        Conditional Fp tree is again passed to make FP_Tree
+    """
     items_list.reverse()
     
     for item in items_list:

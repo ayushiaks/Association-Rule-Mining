@@ -35,7 +35,6 @@ candidates=	[]
 for i in hash_table:
 	l=[i]
 	candidates.append(l)
-print(candidates)
 
 for i in range(1,max_length):
 	true_candidates=[]
@@ -53,7 +52,7 @@ for i in range(1,max_length):
 			sup=[]
 			for k in j:
 				sup.append(items[hash_table[k]])
-			if csupport(sup)>=20:
+			if csupport(sup)>=200:
 				superdict[tuple(j)]=[csupport(sup),len(j)]
 				true_candidates.append(j)
 						

@@ -8,7 +8,6 @@ import numpy as np
 def k_itemset(k,_itemset):
 	newk= []
 	length = len(k)
-	print(type(k),type(_itemset))
 	x =0
 	if(_itemset>=2):
 		for i in range(length-1):
