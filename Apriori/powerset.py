@@ -26,8 +26,4 @@ def lsupport(minsup,l):
 		return True
 	return False
 
-items_list=[]
 
-for item in items:
-	if lsupport(60, items[item]):
-		items_list.append(item)
