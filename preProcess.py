@@ -1,6 +1,4 @@
 """
-Written by: Ayushi,Aman,Garvit
-Written on: Feb 11,2019
 This code parses the input data file to make a dictionary which is used by rest of the programs
 """
 import pandas

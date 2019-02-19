@@ -1,6 +1,4 @@
 """
-Written by: Garvit
-Written on: Feb 18,2019
 This code takes input all frequent itemsets and finds closed itemsets 
 """
 

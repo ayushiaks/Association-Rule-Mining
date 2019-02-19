@@ -1,8 +1,4 @@
-"""
-Written by: Aman,Ayushi
-Written on: Feb 17,2019
-why does it exists 
-"""
+
 
 import pickle
 
@@ -26,8 +22,4 @@ def lsupport(minsup,l):
 		return True
 	return False
 
-items_list=[]
 
-for item in items:
-	if lsupport(60, items[item]):
-		items_list.append(item)

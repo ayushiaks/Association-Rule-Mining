@@ -1,6 +1,4 @@
 """
-Written by: Garvit
-Written on: Feb 17,2019
 This code takes input all frequent itemsets and finds maximal itemsets 
 """
 #makes maximal powerset using superdict in a specific-general approach

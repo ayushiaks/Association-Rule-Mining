@@ -1,6 +1,4 @@
 """
-Written by: Garvit,Aman
-Written on: Feb 13,2019
 This generates rules with given minconfidence(default = 0.8) 
 """
 
@@ -18,7 +16,6 @@ pkl_file.close()
 pkl_file = open("../pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
 pkl_file.close()
-
 #it is a recurssive functions which takes in lv1 rules as input and generate rules for rest of generations
 def generateAllRules(x,y,used,item):
 	x = list(x)
@@ -40,7 +37,7 @@ def generateAllRules(x,y,used,item):
 				if con >= minconfidence:
 					x_made = tuple(x_made)
 					y_made = tuple(y_made)
-					finalRules[x_made] = (y_made,con)
+					finalRules.append([x_made,y_made,con])
 					generateAllRules(x_made,y_made,used,item)
 			inum = inum + 1
 			return
@@ -58,7 +55,8 @@ def confidence(supab,supb):
 minconfidence = 0.8
 minc = input("minconfidence(btw 0 and 1)= ")
 minconfidence = float(minc)
-finalRules = {}
+finalRules = []
+
 
 #this function generates lv1 rules and calls generateAllRules to generate rest of the rules
 def lv1_rules(item):
@@ -71,11 +69,12 @@ def lv1_rules(item):
 		del x[inum]
 		inum = inum+1
 		con = confidence(item,x)
-		if con > minconfidence:
+		
+		if con >= minconfidence:
 			x = tuple(x)
 			y = tuple(y)
 			used[y] = 1
-			finalRules[x] = (y,con)
+			finalRules.append([x,y,con])
 			generateAllRules(x,y,used,item)
 
 #this function passed a frequent itemset and all rules above minconfidence are generated
@@ -89,17 +88,27 @@ def ruleGeneration():
 
 ruleGeneration()
 
+
+
+
 #used to print things to understand the code
+with open('rules.txt','w') as f:
+	for i in finalRules:
+		con = i[2]
+		sup1=superdict[i[0]][0]
+		sup2=superdict[i[1]][0]
+		l1=[]
+		for j in list(i[0]):
+			l1.append(hash_table[j])
+		l2=[]
+		for j in list(i[1]):
+			l2.append(hash_table[j])	
+		
+		
+
+		string = str([l1,(sup1),"->",l2,(sup2), con])
+		f.write(string)
+		f.write("\n")
+
+
 print(len(finalRules))
-for i in finalRules:
-	l = list(i)
-	x = []
-	for j in l:
-		x.append(hash_table[j])
-	l = list(finalRules[i])
-	l = l[0]
-	y = []
-	for j in l:
-		y.append(hash_table[j])
-	if len(y) >= 1:
-		print(x,"->",y)

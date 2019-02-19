@@ -1,18 +1,25 @@
 """
-Written by: Ayushi,Aman
-Written on: Feb 11,2019
 This code generates frequent itemsets using inbuilt functions and k-itemset generation function from merge_itemsets.py
 The dictionary of frequent itemsets contains the count and length of the itemset
 """
 
 import pickle
 import numpy as np
-from powerset import powerset,items_list
+from powerset import powerset,lsupport
 from merge_itemsets import k_itemset 
 
 pkl_file=open("../pkl_files/items.pkl","rb")
 items=pickle.load(pkl_file)
 pkl_file.close()
+
+s=input("Enter min support:")
+min_sup=int(s)
+
+items_list=[]
+
+for item in items:
+	if lsupport(min_sup, items[item]):
+		items_list.append(item)
 
 #gives an id to each frequent item
 hash_table=dict()
@@ -60,12 +67,14 @@ for i in range(1,max_length):
 			sup=[]
 			for k in j:
 				sup.append(items[hash_table[k]])
-			if csupport(sup)>60:
+			if csupport(sup)>min_sup:
 				superdict[tuple(j)]=[csupport(sup),len(j)]
 				true_candidates.append(j)
 						
 	candidates=true_candidates		
-print(superdict)
+
+print(len(superdict))
+
 pkl_file = open("../pkl_files/superdict.pkl","wb")
 pickle.dump(superdict,pkl_file)
 pkl_file.close()

@@ -1,8 +1,4 @@
-"""
-Written by: Aman,Ayushi
-Written on: Feb 17,2019
-why does it exists 
-"""
+
 import pickle
 import pandas
 

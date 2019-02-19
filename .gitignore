@@ -3,3 +3,4 @@ groceries.csv
 items.pkl
 #cache
 __pycache__/
+./Apriori/__pycache__
