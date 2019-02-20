@@ -30,6 +30,7 @@ for i in tmp:
         _list.append(l_list)
         l_list = []
 
+redundant_item = []
 for k in range(0,len(_list)-1):
     for i in _list[k]:
         for j in _list[k+1]:
@@ -38,11 +39,13 @@ for k in range(0,len(_list)-1):
                 a = [word for word in i if word not in j]
                 # print(a)
                 if len(a) == 0:
-                    print("asd")
+                    # print("asd")
                     tmp[tuple(i)][1] = 0
+                    redundant_item.append(i)
                     # continue
-                    print(i,j,tmp[tuple(i)][0],tmp[tuple(j)][0])
+                    # print(i,j,tmp[tuple(i)][0],tmp[tuple(j)][0])
 _closed = []
+print(redundant_item)
 for i in tmp:
     if tmp[i][1] != 0:
         _closed.append(i)
@@ -53,10 +56,13 @@ for i in _closed:
     for j in i:
         tmp.append(hash_table[j])
     closed.append(tmp)
-print(closed)
+# print(closed)
 
 pkl_file = open("./pkl_files/closed.pkl","wb")
 pickle.dump(closed,pkl_file)
+pkl_file.close()
+pkl_file = open("./pkl_files/redundant_item.pkl","wb")
+pickle.dump(redundant_item,pkl_file)
 pkl_file.close()
 print(len(closed),"closed")
 
