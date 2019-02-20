@@ -13,9 +13,30 @@ We used the Groceries Market Basket Dataset, which can be found [here](http://ww
 ```python
     python3 preProcess.py
 ```
-The csv file was read transaction by transaction and each transaction was saved as a list. A mapping was created from the unique items in the dataset to integers so that each item corresponded to a unique integer. The entire data was mapped to integers to reduce the storage and computational requirement. A reverse mapping was created from the integers to the items, so that the item names could be written in the final output pickle file.
-All the pickle files generated in such a way are stored inside the pkl_files folder
-### Directory Structure
+* Apriori: <br />
+    Change path to Apriori/ <br />
+    1. Generate frequent itemsets using <br />
+    ```python
+
+    python3 gen_freqitemset.py
+    ```
+    <br />
+    Creates pickle files "superdict.pkl" and "hash_table.pkl" which store unique items and their hashes respecctively. <br />
+    Stores the frequent itemsets in results/freq_items.txt .
+    2. Generate association rules using
+    ```python
+
+    python3 ruleGeneration.py
+    ```
+    Stores generated rules in results/rules.txt .
+* FP Growth: <br />
+    Change path to FP_Tree/ <br />
+    Generate frequent itemsets using
+    ```python
+
+    python3 fp_growth.py
+    ```
+## Directory Structure
 ```
 Association-Rule-Mining/
 +-- Apriori
