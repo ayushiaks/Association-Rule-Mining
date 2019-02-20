@@ -13,6 +13,9 @@ pkl_file = open("../pkl_files/superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
 item = []
 pkl_file.close()
+pkl_file = open("../pkl_files/redundant_item.pkl","rb")
+redundant_item = pickle.load(pkl_file)
+pickle.close()
 pkl_file = open("../pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
 pkl_file.close()
@@ -80,7 +83,7 @@ def lv1_rules(item):
 #this function passed a frequent itemset and all rules above minconfidence are generated
 #it calls lv1_rules() which further calls other functions
 def ruleGeneration():
-	for i in superdict:
+	for i in superdict: #redundant_item
 		if len(i) > 1:
 			item = list(i)
 			lv1_rules(item)
@@ -111,4 +114,4 @@ with open('rules.txt','w') as f:
 		f.write("\n")
 
 
-print(len(finalRules))
+print((finalRules))
