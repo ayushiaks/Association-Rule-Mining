@@ -1076,14 +1076,14 @@ body .markdown-body
 Creates pickle files &ldquo;superdict.pkl&rdquo; and &ldquo;hash_table.pkl&rdquo; which store unique items and their hashes respecctively. <br />
 Stores the frequent itemsets in results/freq_items.txt . <br /></li>
 <li>Generate association rules using <br />
-<div class="codehilite"><pre><span class="n">python3</span> <span class="n">gen_freqitemset</span><span class="o">.</span><span class="n">py</span>
+<div class="codehilite"><pre><span class="n">python3</span> <span class="n">ruleGeneration</span><span class="o">.</span><span class="n">py</span>
 </pre></div></li>
 </ol>
-<p>Stores generated rules in results/rules.txt .
+<p>Stores generated rules in results/rules.txt . <br />
 * FP Growth: <br />
 Change path to FP_Tree/ <br />
 Generate frequent itemsets using
-<div class="codehilite"><pre><span class="n">python3</span> <span class="n">fp_growth</span><span class="o">.</span><span class="n">py</span>
+<div class="codehilite"><pre>python3 fp_growth.py
 </pre></div></p>
 <h2 id="directory-structure">Directory Structure<a class="headerlink" href="#directory-structure" title="Permanent link"></a></h2>
 <div class="codehilite"><pre>Association-Rule-Mining/

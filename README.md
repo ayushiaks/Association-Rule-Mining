@@ -26,15 +26,14 @@ We used the Groceries Market Basket Dataset, which can be found [here](http://ww
     2. Generate association rules using <br />
     ```python
 
-    python3 gen_freqitemset.py
+    python3 ruleGeneration.py
     ```
-    
-    Stores generated rules in results/rules.txt .
+    Stores generated rules in results/rules.txt . <br />
 * FP Growth: <br />
     Change path to FP_Tree/ <br />
     Generate frequent itemsets using
-    ```python
-    
+    ```
+
     python3 fp_growth.py
     ```
 ## Directory Structure
