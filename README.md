@@ -34,7 +34,7 @@ We used the Groceries Market Basket Dataset, which can be found [here](http://ww
     Change path to FP_Tree/ <br />
     Generate frequent itemsets using
     ```python
-
+    
     python3 fp_growth.py
     ```
 ## Directory Structure
