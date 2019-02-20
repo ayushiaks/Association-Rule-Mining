@@ -7,6 +7,9 @@ import pickle
 import numpy as np
 from powerset import powerset,lsupport
 from merge_itemsets import k_itemset 
+import time
+
+start=time.time()
 
 pkl_file=open("../pkl_files/items.pkl","rb")
 items=pickle.load(pkl_file)
@@ -73,12 +76,23 @@ for i in range(1,max_length):
 						
 	candidates=true_candidates		
 
-print(len(superdict))
-
 pkl_file = open("../pkl_files/superdict.pkl","wb")
 pickle.dump(superdict,pkl_file)
 pkl_file.close()
 pkl_file = open("../pkl_files/hash_table.pkl", "wb")
 pickle.dump(hash_table,pkl_file)
 pkl_file.close()
-  
+
+end = time.time()
+
+print("Time Taken:",end-start)
+
+with open('freq_items.txt','w') as f:
+	for i in superdict:
+		j=[]
+		for k in i:
+			j.append(hash_table[k])
+		string = str([j,superdict[i][0]])
+		f.write(string)
+		f.write("\n")
+

@@ -2,6 +2,9 @@
 why does it exists 
 """
 import pickle
+import time
+
+start=time.time()
 
 pkl_file=open("../pkl_files/transactions.pkl","rb")
 transactions=pickle.load(pkl_file)
@@ -154,7 +157,7 @@ def fp_tree(min_sup):
     return freq_actual
     
 freq_actual=fp_tree(int(input("Enter the minimum support you want for FP_Tree:")))
-for i in freq_actual:
-        print(i)    
-
-print(len(freq_actual))
+end=time.time()
+print("Time Taken:",end-start)
+# for i in freq_actual:
+#         print(i)    
