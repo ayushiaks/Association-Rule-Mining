@@ -15,7 +15,7 @@ item = []
 pkl_file.close()
 pkl_file = open("../pkl_files/redundant_item.pkl","rb")
 redundant_item = pickle.load(pkl_file)
-pickle.close()
+pkl_file.close()
 pkl_file = open("../pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
 pkl_file.close()
@@ -53,6 +53,15 @@ def confidence(supab,supb):
 	supb = tuple(supb)
 	result = superdict[supab][0]/superdict[supb][0]
 	return result
+# def lift(supab,supb,supa):
+# 	supab.sort()
+# 	supa.sort()
+# 	supb.sort()
+# 	supab = tuple(supab)
+# 	supb = tuple(supb)
+# 	supa = tuple(supa)
+# 	result = superdict[supab][0]/(superdict[supb][0]*superdict[suba][0])
+# 	return result
 
 #taking input minconfidence
 minconfidence = 0.8
@@ -114,4 +123,4 @@ with open('rules.txt','w') as f:
 		f.write("\n")
 
 
-print((finalRules))
+print(len(finalRules))
