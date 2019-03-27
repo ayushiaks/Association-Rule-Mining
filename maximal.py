@@ -14,30 +14,28 @@ pkl_file = open("./pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
 pkl_file.close()
 
-superdict_copy = superdict.copy()
+maximal_list = superdict.copy()
 
-def checkSet(temp):
+#breaks each transaction into its subset and remove them from maximal set
+def checkSet(transaction):
     _list = []
-    for i in range(len(temp)-1,0,-1):
-        _list = list(combinations(temp,i))
+    for i in range(len(transaction)-1,0,-1):
+        _list = list(combinations(transaction,i))
         for j in _list:
             x = tuple(j)
-            superdict_copy[x][1] = 0
+            maximal_list[x][1] = 0
 
+#finds all maximal itemsets
 def generateMaximal():
     _list = []
-#     max = 0
-#     for i in tmp:
-#         if tmp[i][1] > max:
-#             max = tmp[i][1]
-    temp = []
-    for i in superdict_copy:
-        if superdict_copy[i][1] != 0:
-            temp = list(i)
-            checkSet(temp)
+    transaction = []
+    for i in maximal_list:
+        if maximal_list[i][1] != 0:
+            transaction = list(i)
+            checkSet(transaction)
     _list = []
-    for i in superdict_copy:
-        if superdict_copy[i][1] != 0:
+    for i in maximal_list:
+        if maximal_list[i][1] != 0:
             _list.append(i)
     return _list
 
