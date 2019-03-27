@@ -11,14 +11,26 @@ import copy
 
 pkl_file = open("../pkl_files/superdict.pkl","rb")
 superdict = pickle.load(pkl_file)
+
 item = []
 pkl_file.close()
+
 pkl_file = open("../pkl_files/redundant_item.pkl","rb")
 redundant_item = pickle.load(pkl_file)
 pkl_file.close()
+
 pkl_file = open("../pkl_files/hash_table.pkl","rb")
 hash_table = pickle.load(pkl_file)
 pkl_file.close()
+
+#taking input minconfidence
+minconfidence = 0.8
+minc = input("minconfidence(btw 0 and 1)= ")
+minconfidence = float(minc)
+
+#contains list of final rules
+finalRules = []
+
 #it is a recurssive functions which takes in lv1 rules as input and generate rules for rest of generations
 def generateAllRules(x,y,used,item):
 	x = list(x)
@@ -53,22 +65,18 @@ def confidence(supab,supb):
 	supb = tuple(supb)
 	result = superdict[supab][0]/superdict[supb][0]
 	return result
-# def lift(supab,supb,supa):
-# 	supab.sort()
-# 	supa.sort()
-# 	supb.sort()
-# 	supab = tuple(supab)
-# 	supb = tuple(supb)
-# 	supa = tuple(supa)
-# 	result = superdict[supab][0]/(superdict[supb][0]*superdict[suba][0])
-# 	return result
-
-#taking input minconfidence
-minconfidence = 0.8
-minc = input("minconfidence(btw 0 and 1)= ")
-minconfidence = float(minc)
-finalRules = []
-
+'''
+#lift for better ranking
+def lift(supab,supb,supa):
+	supab.sort()
+	supa.sort()
+	supb.sort()
+	supab = tuple(supab)
+	supb = tuple(supb)
+	supa = tuple(supa)
+	result = superdict[supab][0]/(superdict[supb][0]*superdict[suba][0])
+	return result
+'''
 
 #this function generates lv1 rules and calls generateAllRules to generate rest of the rules
 def lv1_rules(item):
@@ -93,15 +101,13 @@ def lv1_rules(item):
 #it calls lv1_rules() which further calls other functions
 def ruleGeneration():
 	for i in superdict: #redundant_item
+	# for i in redundant_item:
 		if len(i) > 1:
 			item = list(i)
 			lv1_rules(item)
 
 
 ruleGeneration()
-
-
-
 
 #used to print things to understand the code
 with open('rules.txt','w') as f:
@@ -115,9 +121,6 @@ with open('rules.txt','w') as f:
 		l2=[]
 		for j in list(i[1]):
 			l2.append(hash_table[j])	
-		
-		
-
 		string = str([l1,(sup1),"->",l2,(sup2), con])
 		f.write(string)
 		f.write("\n")
