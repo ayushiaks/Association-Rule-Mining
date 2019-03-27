@@ -22,18 +22,16 @@ We used the Groceries Market Basket Dataset, which can be found [here](http://ww
     ```
     <br />
     Creates pickle files "superdict.pkl" and "hash_table.pkl" which store unique items and their hashes respecctively. <br />
-    Stores the frequent itemsets in results/freq_items.txt .
-    2. Generate association rules using
-    ```python
-
+    Stores the frequent itemsets in results/freq_items.txt . <br />
+    2. Generate association rules using <br />
+    ```
     python3 ruleGeneration.py
     ```
-    Stores generated rules in results/rules.txt .
+    Stores generated rules in results/rules.txt . <br />
 * FP Growth: <br />
     Change path to FP_Tree/ <br />
     Generate frequent itemsets using
-    ```python
-
+    ```
     python3 fp_growth.py
     ```
 ## Directory Structure
